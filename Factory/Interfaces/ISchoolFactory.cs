@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Factory.Repositories.Interfaces;
+using System;
 
 namespace Factory.Interfaces
 {
@@ -7,7 +8,7 @@ namespace Factory.Interfaces
     /// </summary>
     public interface ISchoolFactory
     {
-        public ISchoolFactory Register(string Location, Type shcoolRepository);
-        public ISchoolFactory Create(string Location);
+        public ISchoolRepository Register(string Location, Type shcoolRepository);
+        public ISchoolRepository Create(string Location);
     }
 }

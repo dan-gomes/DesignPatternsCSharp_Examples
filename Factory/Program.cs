@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Factory
 {
@@ -6,7 +7,7 @@ namespace Factory
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           var provider = Startup.Iniciar();
         }
     }
 }

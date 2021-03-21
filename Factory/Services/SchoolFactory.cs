@@ -1,4 +1,5 @@
 ﻿using Factory.Interfaces;
+using Factory.Repositories.Interfaces;
 using System;
 
 namespace Factory.Services
@@ -8,12 +9,12 @@ namespace Factory.Services
     /// </summary>
     public class SchoolFactory : ISchoolFactory
     {
-        public ISchoolFactory Create(string Location)
+        public ISchoolRepository Create(string Location)
         {
             throw new NotImplementedException();
         }
 
-        public ISchoolFactory Register(string Location, Type shcoolRepository)
+        public ISchoolRepository Register(string Location, Type shcoolRepository)
         {
             throw new NotImplementedException();
         }
