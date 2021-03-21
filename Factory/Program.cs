@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DesignPatternsCSharp_Examples
+namespace Factory
 {
     public class Program
     {
