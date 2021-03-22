@@ -1,13 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using Microsoft.Extensions.Hosting;
 
 namespace Factory
 {
     public class Program
     {
-        static void Main(string[] args)
+        static async void Main(string[] args)
         {
-           var provider = Startup.Iniciar();
+            using IHost host = CreateHostBuilder(args).Build();
+            await host.RunAsync();
         }
+
+        static IHostBuilder CreateHostBuilder(string[] args)
+        => Host.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
     }
 }

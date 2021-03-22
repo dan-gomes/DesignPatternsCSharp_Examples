@@ -1,37 +1,52 @@
 ﻿using Factory.Interfaces;
 using Factory.Repositories;
 using Factory.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Factory
 {
-    public static class Startup
+    /// <summary>
+    /// Class to configure services.    
+    /// </summary>
+    public class Startup
     {
-        public static IServiceProvider Iniciar() 
-        {
-           return ServiceProvider(AddService(new ServiceCollection()));
-        }
+        public IConfiguration Configuration { get; }
 
-        public static IServiceCollection AddService(this IServiceCollection services)
-        {
-            return services.AddSingleton<ISchoolFactory, SchoolFactory>()
+        /// <summary>
+        /// Builder with application configuration properties <see cref="IConfiguration"/> 
+        /// </summary>
+        /// <param name="configuration"></param>
+        public Startup(IConfiguration configuration)
+            => Configuration = configuration;
+
+        /// <summary>
+        /// Method for configuring the service application.        
+        ///<para>The <see cref="HostBuilderExtensions"/> 
+        ///it is responsable for the implementation of the <paramref name="services"/>.</para> 
+        /// </summary>
+        /// <param name="services">Specifies the contract for a collection of service descriptors </param>
+        public void ConfigureServices(IServiceCollection services)
+            => services.AddSingleton<ISchoolFactory, SchoolFactory>()
                 .AddTransient<EastSchoolRepository>()
                 .AddTransient<WestSchoolRepository>()
                 .AddTransient<NorthSchoolRepository>()
-                .AddTransient<SouthShoolRepository>();                
-        }
-        public static IServiceProvider ServiceProvider(this IServiceCollection services)
-        {
-          ServiceProvider provider =   services.BuildServiceProvider();
-            provider.GetService<ISchoolFactory>().Register("East", typeof(EastSchoolRepository));
-            provider.GetService<ISchoolFactory>().Register("West", typeof(WestSchoolRepository));
-            provider.GetService<ISchoolFactory>().Register("North", typeof(NorthSchoolRepository));
-            provider.GetService<ISchoolFactory>().Register("South", typeof(SouthShoolRepository));
+                .AddTransient<SouthShoolRepository>();
 
-            return provider;
-        }
+        /// <summary>
+        /// Method that initializes the subclass of the <see cref="ISchoolFactory"/>
+        /// </summary>
+        /// <param name="serviceProvider">
+        /// Defines a mechanism for retrieving a service object; that is, an object that
+        /// provides custom support to other objects.</param>
+        public void UseSchoolFactory(IServiceProvider serviceProvider)
+            => serviceProvider
+                .GetService<ISchoolFactory>()
+                .Register("East", typeof(EastSchoolRepository))
+                .Register("West", typeof(WestSchoolRepository))
+                .Register("North", typeof(NorthSchoolRepository))
+                .Register("South", typeof(SouthShoolRepository));
+
     }
 }

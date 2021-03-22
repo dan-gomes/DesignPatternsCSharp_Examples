@@ -8,7 +8,7 @@ namespace Factory.Interfaces
     /// </summary>
     public interface ISchoolFactory
     {
-        public ISchoolRepository Register(string Location, Type shcoolRepository);
+        public ISchoolFactory Register(string Location, Type shcoolRepository);
         public ISchoolRepository Create(string Location);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Factory.Repositories.Interfaces;
+﻿using Factory.DTO;
+using Factory.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace Factory.Repositories
 {
@@ -7,5 +9,9 @@ namespace Factory.Repositories
     /// </summary>
     public class WestSchoolRepository : ISchoolRepository
     {
+        public Task<SchoolAverage> ConsultAverage(string location)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
