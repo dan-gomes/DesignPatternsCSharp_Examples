@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Factory
 {
@@ -29,7 +32,7 @@ namespace Factory
 
                 // finally, call the ConfigureServices implemented by the TStartup object
                 cfgServicesMethod?.Invoke(startupObj, new object[] { serviceCollection });
-                initCfgServiceMethod.Invoke(startupObj, new object[] { ctx.  });
+                initCfgServiceMethod.Invoke(startupObj, new object[] { typeof(IServiceProvider) });
             });
             return hostBuilder;
         }
