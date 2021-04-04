@@ -8,6 +8,6 @@ namespace Factory.Repositories.Interfaces
     /// </summary>
     public interface ISchoolRepository
     {
-        Task<SchoolAverage> ConsultAverage(string location);
+        Task<SchoolAverage> ConsultAverage();
     }
 }

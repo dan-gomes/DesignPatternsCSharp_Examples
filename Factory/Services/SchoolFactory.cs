@@ -1,7 +1,6 @@
 ﻿using Factory.Interfaces;
 using Factory.Repositories.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Factory.Services
@@ -12,7 +11,7 @@ namespace Factory.Services
     public class SchoolFactory : ISchoolFactory
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IDictionary<string, Type> _repository = new Dictionary<string,Type>();
+        private static IDictionary<string, Type> _repository = new Dictionary<string,Type>();
 
         public SchoolFactory(IServiceProvider serviceProvider)
         {

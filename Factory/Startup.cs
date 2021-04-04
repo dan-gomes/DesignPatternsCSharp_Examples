@@ -40,8 +40,8 @@ namespace Factory
         /// <param name="serviceProvider">
         /// Defines a mechanism for retrieving a service object; that is, an object that
         /// provides custom support to other objects.</param>
-        public void UseSchoolFactory(IServiceProvider serviceProvider)
-            => serviceProvider
+        public void UseSchoolFactory(IServiceCollection services)
+            => services.BuildServiceProvider()
                 .GetService<ISchoolFactory>()
                 .Register("East", typeof(EastSchoolRepository))
                 .Register("West", typeof(WestSchoolRepository))

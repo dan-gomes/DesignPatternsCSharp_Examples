@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Factory
 {
@@ -14,12 +11,13 @@ namespace Factory
         public static IHostBuilder UseStartup<T>(this IHostBuilder hostBuilder) where T : class
         {
             hostBuilder.ConfigureServices((ctx, serviceCollection) =>
-            {
+            {                
+                    
                 // Find a method that has this signature: ConfigureServices(IServiceCollection)
                 var cfgServicesMethod = typeof(T).GetMethod(
-                    ConfigureServicesMethodName, new Type[] { typeof(T) });
+                    ConfigureServicesMethodName);
                 // Find a method that has this signuture: InitializeServies;
-                var initCfgServiceMethod = typeof(T).GetMethod(UseSchoolFactoryMethodName, new Type[] { typeof(T) });
+                var initCfgServiceMethod = typeof(T).GetMethod(UseSchoolFactoryMethodName);
 
                 // Check if TStartup has a ctor that takes a IConfiguration parameter
                 var hasConfigCtor = typeof(T).GetConstructor(
@@ -32,8 +30,8 @@ namespace Factory
 
                 // finally, call the ConfigureServices implemented by the TStartup object
                 cfgServicesMethod?.Invoke(startupObj, new object[] { serviceCollection });
-                initCfgServiceMethod.Invoke(startupObj, new object[] { typeof(IServiceProvider) });
-            });
+                initCfgServiceMethod?.Invoke(startupObj, new object[] { serviceCollection });
+             });
             return hostBuilder;
         }
     }

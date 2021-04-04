@@ -9,9 +9,11 @@ namespace Factory.Repositories
     /// </summary>
     public class SouthShoolRepository : ISchoolRepository
     {
-        public Task<SchoolAverage> ConsultAverage(string location)
-        {
-            throw new System.NotImplementedException();
-        }
+        public Task<SchoolAverage> ConsultAverage()
+           => Task.FromResult<SchoolAverage>(new SchoolAverage
+           {
+               AgeRangeOfStudents = 14,
+               NumberOfStudents = 40
+           });
     }
 }

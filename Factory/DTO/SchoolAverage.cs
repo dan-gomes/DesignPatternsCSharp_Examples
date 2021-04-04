@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Factory.DTO
 {
     public class SchoolAverage
     {
         public int NumberOfStudents { get; set; }
-        public int AgeGroupOfStudents { get; set; }
-        public int StudentAge { get; set; }
+        public int AgeRangeOfStudents { get; set; }
+
+        public override string ToString()
+            => $"Number of students: {NumberOfStudents}\n" 
+                + $"Age range of students: {AgeRangeOfStudents}\n";        
     }
 }
