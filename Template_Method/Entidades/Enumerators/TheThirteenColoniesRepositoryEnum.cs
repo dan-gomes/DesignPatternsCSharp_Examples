@@ -14,7 +14,7 @@
         NewJerseyRepository,
         NewYorkRepository,
         NorthCarolinaRepository,
-        PensilvaniaRepository,
+        CommonwealthofPennsylvaniaRepository,
         RhodeIslandRepository,
         SouthCalorinaRepository,
         VirginiaRepository
